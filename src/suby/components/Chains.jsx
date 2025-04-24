@@ -5,7 +5,7 @@ import {
   FaRegArrowAltCircleRight,
 } from "react-icons/fa";
 
-import { MagnifyingGlass } from "react-loader-spinner";
+// import { MagnifyingGlass } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 const Chains = () => {
@@ -49,23 +49,6 @@ const Chains = () => {
 
   return (
     <div className="mediaChainSection">
-      <div className="loaderSection">
-        {loading && (
-          <>
-            <div className="loader">Your 🥣 is Loading...</div>
-            <MagnifyingGlass
-              visible={true}
-              height="80"
-              width="80"
-              ariaLabel="magnifying-glass-loading"
-              wrapperStyle={{}}
-              wrapperClass="magnifying-glass-wrapper"
-              glassColor="#c0efff"
-              color="#e15b64"
-            />
-          </>
-        )}
-      </div>
       <div className="btnSection">
         <button onClick={() => handleScroll("left")}>
           <FaRegArrowAltCircleLeft className="btnIcons" />
