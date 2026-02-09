@@ -36,7 +36,8 @@ const PlaceOrder = () => {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        `${url}/api/order`,
+        `${API_URL}/order`,
+
         {
           items: cart,
           amount: totalPrice - discount,
@@ -46,7 +47,7 @@ const PlaceOrder = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       // Clear the cart after successful order placement
@@ -57,7 +58,7 @@ const PlaceOrder = () => {
       Swal.fire(
         "Order placed Succesfully",
         "Go to Home to order more",
-        "success"
+        "success",
       );
       // alert("Order placed successfully!");
 

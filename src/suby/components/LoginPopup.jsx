@@ -10,7 +10,7 @@ import { API_URL } from "../api";
 const LoginPopup = ({ setShowLogin, setToken }) => {
   const [currentState, setCurrentState] = useState("Login");
   const [data, setData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -23,27 +23,30 @@ const LoginPopup = ({ setShowLogin, setToken }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
+
     let newUrl = API_URL;
     if (currentState === "Login") {
-      newUrl += "/api/user/login";
+      newUrl += "/vendor/login";
     } else {
-      newUrl += "/api/user/register";
+      newUrl += "/vendor/register";
     }
+
     try {
       const response = await axios.post(newUrl, data);
-      if (response.data.success) {
-        Swal.fire("Welcome to Foodie!", "Login Success", "success");
-        toast.success("Login Success");
+
+      if (currentState === "Login") {
+        Swal.fire("Welcome!", "Login Success", "success");
         const token = response.data.token;
         localStorage.setItem("token", token);
         setToken(token);
         setShowLogin(false);
       } else {
-        handleLoginErrors(response.data.message);
+        Swal.fire("Success", "Vendor registered successfully", "success");
+        setCurrentState("Login");
       }
     } catch (error) {
       console.error(error);
-      Swal.fire("Error", "An error occurred. Please try again.", "error");
+      Swal.fire("Error", "Login or Register failed", "error");
     }
   };
 
@@ -66,7 +69,7 @@ const LoginPopup = ({ setShowLogin, setToken }) => {
         Swal.fire(
           "Invalid Password",
           "Password should have at least 5 characters",
-          "info"
+          "info",
         );
         break;
       default:
@@ -109,7 +112,7 @@ const LoginPopup = ({ setShowLogin, setToken }) => {
         <div className="login-popup-inputs">
           {currentState === "Login" ? null : (
             <input
-              name="name"
+              name="username"
               onChange={onChangeHandler}
               value={data.name}
               type="text"
