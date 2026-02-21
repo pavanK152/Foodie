@@ -4,13 +4,18 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Bounce } from "react-toastify";
+import { CartProvider } from "./context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </CartProvider>
+
     <ToastContainer
       position="top-right"
       autoClose={3000}
@@ -22,8 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       draggable
       pauseOnHover
       theme="light"
-      transition:Bounce
+      transition={Bounce}
       bodyClassName="toastBody"
     />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
