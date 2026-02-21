@@ -89,7 +89,7 @@ const LoginPopup = ({ setShowLogin, setToken }) => {
       cancelButtonText: "No, thanks",
     }).then((result) => {
       if (result.isConfirmed) {
-        window.open("https://vendor-dash-board.vercel.app/", "_blank");
+        window.open("https://react-kalyan-dash-board.vercel.app/", "_blank");
       }
     });
   };
